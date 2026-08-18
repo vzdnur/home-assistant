@@ -1,0 +1,60 @@
+const toNumber = (val, decimals = 0) => {
+    const num = Number(val);
+    return isNaN(num) ? (0).toFixed(decimals) : num.toFixed(decimals);
+};
+const solar = toNumber(msg.solar_prod, 0);
+const energy = toNumber(msg.energy, 0);
+const temp = toNumber(msg.terrace_right_temp, 1);
+const bitcoin_eur = toNumber(msg.bitcoin_eur, 2);
+const eur = toNumber(msg.eur, 2);
+const iswd = toNumber(msg.iswd, 2);
+const oil = toNumber(msg.oil, 2);
+const payload = {
+    frames: [
+        {
+            icon: "34921",
+            text: `${solar} W`,
+            duration: 5000,
+            repeat: 1
+        },
+        {
+            icon: "52715",
+            text: `${energy} W`,
+            duration: 5000,
+            repeat: 1
+        },
+        {
+            icon: "2422",
+            text: `${temp} C`,
+            duration: 5000,
+            repeat: 1
+        },
+        {
+            icon: "782",
+            text: `${bitcoin_eur} €`,
+            duration: 5000,
+            repeat: 1
+        },
+        {
+            icon: "16310",
+            text: `${iswd} €`,
+            duration: 5000,
+            repeat: 1
+        },
+        {
+            icon: "23390",
+            text: `${eur} €`,
+            duration: 5000,
+            repeat: 1
+        },
+        {
+            icon: "1819",
+            text: `${oil}`,
+            duration: 5000,
+            repeat: 1
+        }
+    ]
+};
+global.set("lametric_payload", payload);
+msg.payload = payload;
+return msg;
